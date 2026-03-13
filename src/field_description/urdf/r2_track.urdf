@@ -1,0 +1,326 @@
+<?xml version="1.0" ?>
+<robot name="r2_track">
+
+  <link name="base_footprint"/>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.02543944487223283 0.007901682330641632 0.10652970780608358" rpy="0 0 0"/>
+      <mass value="23.671826873043024"/>
+      <inertia ixx="0.989844" iyy="0.629408" izz="1.291313" ixy="-3.9e-05" iyz="3.2e-05" ixz="-0.165811"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="base_grey">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="drive_wheel_left">
+    <inertial>
+      <origin xyz="3.762375557769815e-07 0.01952823477815524 3.013889169047046e-06" rpy="0 0 0"/>
+      <mass value="5.434653344645848"/>
+      <inertia ixx="0.013809" iyy="0.017339" izz="0.013809" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.243508 -0.337882 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/drive_wheel_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.243508 -0.337882 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/drive_wheel_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="drive_wheel_right">
+    <inertial>
+      <origin xyz="3.696864319668869e-07 -0.020471764923819524 -2.6069062028857837e-06" rpy="0 0 0"/>
+      <mass value="5.435313288898526"/>
+      <inertia ixx="0.013811" iyy="0.017341" izz="0.01381" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.243508 0.322118 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/drive_wheel_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.243508 0.322118 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/drive_wheel_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_1_right">
+    <inertial>
+      <origin xyz="3.775164763297756e-07 -0.013000251824659415 2.051779245393348e-07" rpy="0 0 0"/>
+      <mass value="0.5834324336604021"/>
+      <inertia ixx="0.001506" iyy="0.001731" izz="0.001506" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.236492 0.322118 -0.186871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_1_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.236492 0.322118 -0.186871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_1_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_2_right">
+    <inertial>
+      <origin xyz="-2.3625450734643394e-07 -0.013179832027479854 2.1106954090771568e-07" rpy="0 0 0"/>
+      <mass value="4.3420654735060005"/>
+      <inertia ixx="0.011181" iyy="0.012819" izz="0.011181" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.106437 0.322118 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_2_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.106437 0.322118 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_2_right_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_1_left">
+    <inertial>
+      <origin xyz="-1.0745596575045813e-07 -0.010000252481387029 2.0160033609856187e-07" rpy="0 0 0"/>
+      <mass value="1.083031059268471"/>
+      <inertia ixx="0.001609" iyy="0.000797" izz="0.001609" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.063563 0.322118 -0.016871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_3_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.063563 0.322118 -0.016871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_3_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_3_right">
+    <inertial>
+      <origin xyz="3.775164763297756e-07 0.012999747877323664 2.051779245393348e-07" rpy="0 0 0"/>
+      <mass value="0.5834324336604021"/>
+      <inertia ixx="0.001506" iyy="0.001731" izz="0.001506" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.236492 -0.337882 -0.186871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_1_right_v1__1__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.236492 -0.337882 -0.186871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_1_right_v1__1__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_2_left">
+    <inertial>
+      <origin xyz="-2.3518885147733037e-07 0.012999748095674557 1.920843119562754e-07" rpy="0 0 0"/>
+      <mass value="4.320702447112095"/>
+      <inertia ixx="0.011152" iyy="0.012817" izz="0.011152" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.106437 -0.337882 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_2_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.106437 -0.337882 -0.046871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_2_left_v1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="driven_wheel_3_left">
+    <inertial>
+      <origin xyz="-1.074559657782137e-07 0.009999747220586885 2.01600334585883e-07" rpy="0 0 0"/>
+      <mass value="1.083031059268471"/>
+      <inertia ixx="0.001609" iyy="0.000797" izz="0.001609" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.063563 -0.337882 -0.016871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_3_left_v1__1__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.063563 -0.337882 -0.016871" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r2_track_meshes/driven_wheel_3_left_v1__1__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <joint name="drive_wheel_left_joint" type="continuous">
+    <origin xyz="-0.243508 0.337882 0.046871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_left"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="drive_wheel_right_joint" type="continuous">
+    <origin xyz="-0.243508 -0.322118 0.046871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_right"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_1_right" type="continuous">
+    <origin xyz="0.236492 -0.322118 0.186871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_1_right"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_2_right" type="continuous">
+    <origin xyz="0.106437 -0.322118 0.046871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_2_right"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_1_left" type="continuous">
+    <origin xyz="-0.063563 -0.322118 0.016871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_1_left"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_3_right" type="continuous">
+    <origin xyz="0.236492 0.337882 0.186871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_3_right"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_2_left" type="continuous">
+    <origin xyz="0.106437 0.337882 0.046871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_2_left"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="driven_wheel_joint_3_left" type="continuous">
+    <origin xyz="-0.063563 0.337882 0.016871" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_3_left"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <ros2_control name = "r2_track" type = "system">
+    <hardware>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+    </hardware>
+
+    <!-- Wheel joints -->
+    <joint name="drive_wheel_left_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="drive_wheel_right_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_3_left">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_1_left">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_2_left">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_2_right">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>/home/vignesh/robocon_ws/src/field_description/config/four_wheeled_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>

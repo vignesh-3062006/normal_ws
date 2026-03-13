@@ -1,0 +1,348 @@
+
+<robot name="r_bot_wheel">
+
+  <ros2_control name = "r_bot_wheel" type = "system">
+    <hardware>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+    </hardware>
+
+    <!-- Wheel joints -->
+    <joint name="left_wheel_joint_1">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="left_wheel_joint_2">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="right_wheel_joint_1">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="right_wheel_joint_2">
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>/home/vignesh/robocon_ws/src/field_description/config/diff_drive_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.005716878067590589 -2.89245245094383e-05 0.03453956709365499" rpy="0 0 0"/>
+      <mass value="101.77073450699207"/>
+      <inertia ixx="2.401678" iyy="2.497195" izz="4.195013" ixy="-0.00039" iyz="0.000725" ixz="0.157578"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey_mat">
+        <!-- mid grey = same R,G,B, e.g. 0.5 -->
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_wheel_1_1">
+    <inertial>
+      <origin xyz="5.3013149425851225e-15 -0.010000000000000009 -2.0816681711721685e-17" rpy="0 0 0"/>
+      <mass value="1.2207443653686532"/>
+      <inertia ixx="0.000811" iyy="0.001541" izz="0.000811" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.15 -0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/left_wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black_mat">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.15 -0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/left_wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_wheel_2_1">
+    <inertial>
+      <origin xyz="5.245803791353865e-15 -0.010000000000000009 -2.0816681711721685e-17" rpy="0 0 0"/>
+      <mass value="1.2207443653686532"/>
+      <inertia ixx="0.000811" iyy="0.001541" izz="0.000811" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.15 -0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/left_wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black_mat">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.15 -0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/left_wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="right_wheel_1_1">
+    <inertial>
+      <origin xyz="5.3013149425851225e-15 0.010000000000000009 -2.0816681711721685e-17" rpy="0 0 0"/>
+      <mass value="1.2207443653686532"/>
+      <inertia ixx="0.000811" iyy="0.001541" izz="0.000811" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.15 0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/right_wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black_mat">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.15 0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/right_wheel_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="right_wheel_2_1">
+    <inertial>
+      <origin xyz="5.245803791353865e-15 0.010000000000000009 0.0" rpy="0 0 0"/>
+      <mass value="1.2207443653686534"/>
+      <inertia ixx="0.000811" iyy="0.001541" izz="0.000811" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.15 0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/right_wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black_mat">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.15 0.28 -0.025" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/right_wheel_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="zed_link_1">
+    <inertial>
+      <origin xyz="3.3177436778442093e-07 2.448394642509807e-07 0.0129999999999999" rpy="0 0 0"/>
+      <mass value="1.2081073109310216"/>
+      <inertia ixx="0.002798" iyy="0.000196" izz="0.002862" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.167758 0.000778 -0.56" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/zed_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black_mat">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.167758 0.000778 -0.55" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/zed_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="lidar_link_1">
+    <inertial>
+      <origin xyz="-2.220446049250313e-16 -7.112366251504909e-17 0.009999999999999985" rpy="0 0 0"/>
+      <mass value="0.3082687791334982"/>
+      <inertia ixx="5.8e-05" iyy="5.8e-05" izz="9.6e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.275 0.005 -0.011" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red_mat">
+  <!-- pure red: R=1, G=0, B=0, fully opaque -->
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.275 0.005 -0.011" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://field_description/meshes/r_bot/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+  <link name="zed_optical_frame"/>
+
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia
+        ixx="1e-6" ixy="0" ixz="0"
+        iyy="1e-6" iyz="0"
+        izz="1e-6"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.275 -0.005 0.011" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_link_1"/>
+  </joint>
+
+  <joint name="left_wheel_joint_1" type="continuous">
+    <origin xyz="0.15 0.28 0.025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="left_wheel_1_1"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="left_wheel_joint_2" type="continuous">
+    <origin xyz="-0.15 0.28 0.025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="left_wheel_2_1"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="right_wheel_joint_1" type="continuous">
+    <origin xyz="0.15 -0.28 0.025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="right_wheel_1_1"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="right_wheel_joint_2" type="continuous">
+    <origin xyz="-0.15 -0.28 0.025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="right_wheel_2_1"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="zed_joint" type="fixed">
+    <origin xyz="-0.167758 -0.000778 0.7" rpy="0 0.255 0"/>
+    <parent link="base_link"/>
+    <child link="zed_link_1"/>
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0.055" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="zed_optical_joint" type="fixed">
+    <parent link="zed_link_1"/>
+    <child link="zed_optical_frame"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+  </joint>
+
+  <gazebo reference="lidar_link_1">
+    <sensor name="lidar_sensor" type="gpu_lidar">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <always_on>true</always_on>
+      <update_rate>10</update_rate>
+      <topic>scan</topic>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.5708</min_angle>
+            <max_angle>1.5708</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>12.0</max>
+        </range>
+      </lidar>
+      <gz_frame_id>lidar_link_1</gz_frame_id>  <!-- CRITICAL -->
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="zed_link_1">
+    <sensor name="rgbd_camera" type="rgbd_camera">
+      <update_rate>15</update_rate>
+
+      <camera>
+        <horizontal_fov>1.87</horizontal_fov>
+        <vertical_fov>1.19</vertical_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.2</near>
+          <far>10.0</far>
+        </clip>
+      </camera>
+
+      <depth_camera>
+        <clip>
+          <near>0.1</near>
+          <far>10.0</far>
+        </clip>
+      </depth_camera>
+
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+
+      <topic>camera</topic>
+
+      <!-- 🔥 THIS IS THE FIX -->
+      <gz_frame_id>zed_link_1</gz_frame_id>
+    </sensor>
+  </gazebo>
+
+
+</robot>

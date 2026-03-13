@@ -1,0 +1,504 @@
+<?xml version="1.0" ?>
+<robot name="kuku_bot">
+
+    <link name="base_link">
+    <inertial>
+        <origin xyz="-0.04003908806405624 -0.011206346470421893 0.17688833890063996" rpy="0 0 0"/>
+        <mass value="20.657507213583287"/>
+        <inertia ixx="0.975789" iyy="1.27601" izz="1.756627" ixy="-0.01065" iyz="0.005246" ixz="0.069443"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="base_grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="drive_wheel_left">
+    <inertial>
+        <origin xyz="4.546042750575019e-08 0.019528487242311543 2.7423279560997993e-06" rpy="0 0 0"/>
+        <mass value="5.434653344645848"/>
+        <inertia ixx="0.013809" iyy="0.017339" izz="0.013809" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.204515 -0.315 -0.055959" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/_drive_wheel_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.204515 -0.315 -0.055959" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/_drive_wheel_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_left_3">
+    <inertial>
+        <origin xyz="-2.0400821306235106e-07 0.019999999684742642 3.1428849620041e-07" rpy="0 0 0"/>
+        <mass value="1.083031059268471"/>
+        <inertia ixx="0.001609" iyy="0.000797" izz="0.001609" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.024727 -0.315 -0.025033" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.024727 -0.315 -0.025033" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_left_2">
+    <inertial>
+        <origin xyz="-1.9967561468159367e-07 0.018000000559830698 7.073607397739545e-08" rpy="0 0 0"/>
+        <mass value="4.320702447112095"/>
+        <inertia ixx="0.011152" iyy="0.012817" izz="0.011152" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.145425 -0.315 -0.054158" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.145425 -0.315 -0.054158" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_left_1">
+    <inertial>
+        <origin xyz="1.3216420341466417e-07 0.02500000082685444 -4.486591193009204e-08" rpy="0 0 0"/>
+        <mass value="4.3634284993277355"/>
+        <inertia ixx="0.011211" iyy="0.012821" izz="0.011211" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.276199 -0.31 -0.193487" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.276199 -0.31 -0.193487" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_left_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="drive_wheel_right">
+    <inertial>
+        <origin xyz="-6.347261050088093e-10 -0.020471512459663888 -2.8179435788214247e-06" rpy="0 0 0"/>
+        <mass value="5.435313288898526"/>
+        <inertia ixx="0.013811" iyy="0.017341" izz="0.01381" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.205 0.337 -0.055" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/drive_wheel_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.205 0.337 -0.055" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/drive_wheel_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_right_3">
+    <inertial>
+        <origin xyz="-4.777771102290607e-07 -0.019871178913786536 -9.437032891246311e-09" rpy="0 0 0"/>
+        <mass value="1.0951220220329179"/>
+        <inertia ixx="0.001617" iyy="0.000797" izz="0.001617" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.025055 0.337 -0.025" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.025055 0.337 -0.025" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_right_2">
+    <inertial>
+        <origin xyz="3.9342431343292183e-07 -0.019179579563323612 3.2166040664360906e-11" rpy="0 0 0"/>
+        <mass value="4.3420654735060005"/>
+        <inertia ixx="0.011181" iyy="0.012819" izz="0.011181" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.144944 0.337 -0.055" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.144944 0.337 -0.055" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="driven_wheel_right_1">
+    <inertial>
+        <origin xyz="7.1953186742135244e-09 -0.018999999360503228 -5.859451090994838e-09" rpy="0 0 0"/>
+        <mass value="0.5834324336604021"/>
+        <inertia ixx="0.001506" iyy="0.001731" izz="0.001506" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.275 0.337 -0.195" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.275 0.337 -0.195" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/driven_wheel_right_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="track_right">
+    <inertial>
+        <origin xyz="0.1427242673787984 -0.0680000000000009 0.018863170289908776" rpy="0 0 0"/>
+        <mass value="7.889752417779916"/>
+        <inertia ixx="0.044286" iyy="0.420674" izz="0.389537" ixy="-0.0" iyz="-0.0" ixz="-0.05536"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.070903 0.289 -0.148518" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/track_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.070903 0.289 -0.148518" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/track_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="track_left">
+    <inertial>
+        <origin xyz="0.10418057829156435 0.06499999999999723 0.008168753341417145" rpy="0 0 0"/>
+        <mass value="7.889752417779957"/>
+        <inertia ixx="0.044286" iyy="0.420674" izz="0.389537" ixy="-0.0" iyz="-0.0" ixz="-0.05536"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.034325 -0.27 -0.158667" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/track_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0.034325 -0.27 -0.158667" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/track_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="arm_base">
+    <inertial>
+        <origin xyz="-0.044644176155613946 0.04202403151796143 0.12102260434120446" rpy="0 0 0"/>
+        <mass value="0.3420812947833416"/>
+        <inertia ixx="0.001305" iyy="0.001327" izz="0.000293" ixy="1e-05" iyz="-3.4e-05" ixz="0.000311"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.232714 0.14348 -0.234447" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_base_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.232714 0.14348 -0.234447" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_base_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="arm_link_1">
+    <inertial>
+        <origin xyz="-0.056386752808588236 0.0759773444745181 -0.39551038943099054" rpy="0 0 0"/>
+        <mass value="0.6776793758660543"/>
+        <inertia ixx="0.000884" iyy="0.005597" izz="0.005061" ixy="0.000354" iyz="9.9e-05" ixz="-0.001272"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.335586 0.103223 -0.829997" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_link_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.335586 0.103223 -0.829997" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_link_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="arm_link_2">
+    <inertial>
+        <origin xyz="0.12557527129033869 0.024740799367678652 -0.2737257358386814" rpy="0 0 0"/>
+        <mass value="0.3303490269022408"/>
+        <inertia ixx="0.000697" iyy="0.00252" izz="0.001847" ixy="1e-06" iyz="-1e-06" ixz="0.000879"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.359021 0.02206 -0.677554" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_link_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.359021 0.02206 -0.677554" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_link_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="arm_gripper">
+    <inertial>
+        <origin xyz="-0.559722869945143 0.32380123000253525 0.39907959392952014" rpy="0 0 0"/>
+        <mass value="3.1968669114163126"/>
+        <inertia ixx="0.086663" iyy="0.002377" izz="0.087333" ixy="0.001074" iyz="-0.000597" ixz="0.000508"/>
+    </inertial>
+    <visual>
+        <origin xyz="-1.203617 0.33876 0.081747" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_gripper_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="base_grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-1.203617 0.33876 0.081747" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/arm_gripper_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="gripper_right">
+    <inertial>
+        <origin xyz="-0.48914968580106566 0.3196983314351347 0.4421022580189988" rpy="0 0 0"/>
+        <mass value="1.161731850797688"/>
+        <inertia ixx="0.001716" iyy="0.004563" izz="0.003241" ixy="-0.000315" iyz="0.000164" ixz="0.001093"/>
+    </inertial>
+    <visual>
+        <origin xyz="-1.239746 0.489298 0.18251" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/gripper_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="base_grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-1.239746 0.489298 0.18251" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/gripper_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="gripper_left">
+    <inertial>
+        <origin xyz="-0.48900014350089127 0.2906468877884854 0.4419194244293454" rpy="0 0 0"/>
+        <mass value="0.15693368717777043"/>
+        <inertia ixx="0.000231" iyy="0.000601" izz="0.000422" ixy="4e-05" iyz="-2.2e-05" ixz="0.000146"/>
+    </inertial>
+    <visual>
+        <origin xyz="-1.240532 0.116299 0.182447" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/gripper_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="base_grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-1.240532 0.116299 0.182447" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/kuku_bot_meshes/gripper_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <joint name="drive_wheel_joint_left" type="continuous">
+    <origin xyz="-0.204515 0.315 0.055959" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_left"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_3" type="continuous">
+    <origin xyz="-0.024727 0.315 0.025033" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_3"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_2" type="continuous">
+    <origin xyz="0.145425 0.315 0.054158" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_2"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_1" type="continuous">
+    <origin xyz="0.276199 0.31 0.193487" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="drive_wheel_joint_right" type="continuous">
+    <origin xyz="-0.205 -0.337 0.055" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_right"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_3" type="continuous">
+    <origin xyz="-0.025055 -0.337 0.025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_3"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_2" type="continuous">
+    <origin xyz="0.144944 -0.337 0.055" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_2"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_1" type="continuous">
+    <origin xyz="0.275 -0.337 0.195" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    </joint>
+
+    <joint name="track_right_joint" type="fixed">
+    <origin xyz="-0.070903 -0.289 0.148518" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="track_right"/>
+    </joint>
+
+    <joint name="track_left_joint" type="fixed">
+    <origin xyz="-0.034325 0.27 0.158667" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="track_left"/>
+    </joint>
+
+    <joint name="arm_base_joint" type="fixed">
+    <origin xyz="0.232714 -0.15348 0.234447" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="arm_base"/>
+    </joint>
+
+    <joint name="arm_link_joint_1" type="continuous">
+    <origin xyz="0.102872 0.040257 0.59555" rpy="0 0 0"/>
+    <parent link="arm_base"/>
+    <child link="arm_link_1"/>
+    <axis xyz="-0.0 1.0 -0.0"/>
+    </joint>
+
+    <joint name="arm_link_joint_2" type="continuous">
+    <origin xyz="0.023435 0.081163 -0.152443" rpy="0 0 0"/>
+    <parent link="arm_link_1"/>
+    <child link="arm_link_2"/>
+    <axis xyz="-0.0 1.0 -0.0"/>
+    </joint>
+
+    <joint name="arm_link_joint_3" type="continuous">
+    <origin xyz="0.844596 -0.3167 -0.759301" rpy="0 0 0"/>
+    <parent link="arm_link_2"/>
+    <child link="arm_gripper"/>
+    <axis xyz="-0.0 -1.0 -0.0"/>
+    </joint>
+
+    <joint name="arm_gripper_joint_right" type="continuous">
+    <origin xyz="0.036129 -0.150538 -0.100763" rpy="0 0 0"/>
+    <parent link="arm_gripper"/>
+    <child link="gripper_right"/>
+    <axis xyz="0.475547 -0.0 0.87969"/>
+    </joint>
+
+    <joint name="arm_gripper_joint_left" type="continuous">
+    <origin xyz="0.036915 0.222461 -0.1007" rpy="0 0 0"/>
+    <parent link="arm_gripper"/>
+    <child link="gripper_left"/>
+    <axis xyz="-0.475547 0.0 -0.87969"/>
+    </joint>
+
+</robot>

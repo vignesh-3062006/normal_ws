@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<robot name ="track_bot">
+    <link name="base_link">
+        <inertial>
+            <!-- Center of Mass -->
+            <origin xyz="-0.806932 0.28002 0.129659" rpy="0 0 0"/>
+
+            <mass value="23.671827"/>
+
+            <inertia
+            ixx="0.9898"
+            iyy="0.6294"
+            izz="1.291"
+            ixy="-3.945731e-05"
+            ixz="-0.1658"
+            iyz="3.2171403e-05"/>
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <mesh filename="package://field_description/meshes/track_meshes/Spear_gripper.stl"
+                    scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.05 0.05 0.05 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <mesh filename="package://field_description/meshes/track_meshes/Spear_gripper.stl"
+                    scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

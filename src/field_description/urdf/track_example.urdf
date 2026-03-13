@@ -1,0 +1,808 @@
+<?xml version="1.0" ?>
+<robot name="track_base">
+
+    <link name="base_footprint"/>
+
+    <link name="base_link">
+    <inertial>
+        <origin xyz="0.04855514233105654 0.004529383607003448 0.16108966291804383" rpy="0 0 0"/>
+        <mass value="9.471488248885596"/>
+        <inertia ixx="0.534191" iyy="0.584544" izz="0.657546" ixy="-0.032346" iyz="-0.090942" ixz="-0.067612"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="base_grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="lidar_link_1">
+    <inertial>
+        <origin xyz="0.01000049810970649 3.729655473350135e-17 0.009999501044428614" rpy="0 0 0"/>
+        <mass value="0.30826877913349837"/>
+        <inertia ixx="5.8e-05" iyy="5.8e-05" izz="9.6e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.257007 0.003 -0.053667" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.257007 0.003 -0.053667" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/lidar_link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="drive_wheel_left_1">
+    <inertial>
+        <origin xyz="-4.5625723632536364e-07 0.019528487242311654 3.252809423773262e-06" rpy="0 0 0"/>
+        <mass value="5.434653344645848"/>
+        <inertia ixx="0.013809" iyy="0.017339" izz="0.013809" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.198107 -0.309 -0.053125" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/drive_wheel_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="drive_wheel_right_1">
+    <inertial>
+        <origin xyz="4.976476077334091e-07 -0.0134715127576861 -3.3074621103995616e-06" rpy="0 0 0"/>
+        <mass value="5.435313288898526"/>
+        <inertia ixx="0.013811" iyy="0.017341" izz="0.01381" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.198593 0.353 -0.052167" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/drive_wheel_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_left_1_1">
+    <inertial>
+        <origin xyz="-3.695534610548279e-07 0.020000000826854658 4.6561555605562077e-07" rpy="0 0 0"/>
+        <mass value="4.3634284993277355"/>
+        <inertia ixx="0.011211" iyy="0.012821" izz="0.011211" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.282607 -0.309 -0.190653" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_left_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_right_1_1">
+    <inertial>
+        <origin xyz="5.054776542889883e-07 -0.012999999360503278 -4.95377983050771e-07" rpy="0 0 0"/>
+        <mass value="0.5834324336604021"/>
+        <inertia ixx="0.001506" iyy="0.001731" izz="0.001506" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.281407 0.353 -0.192167" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_right_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_left_2_1">
+    <inertial>
+        <origin xyz="2.9860672107195896e-07 0.020000000559831088 -4.1878245812115855e-07" rpy="0 0 0"/>
+        <mass value="4.320702447112095"/>
+        <inertia ixx="0.011152" iyy="0.012817" izz="0.011152" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.151832 -0.309 -0.051325" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_left_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_right_2_1">
+    <inertial>
+        <origin xyz="-1.0829332958151028e-07 -0.013179579563323607 -4.89486366751779e-07" rpy="0 0 0"/>
+        <mass value="4.3420654735060005"/>
+        <inertia ixx="0.011181" iyy="0.012819" izz="0.011181" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.151352 0.353 -0.052167" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_right_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_left_3_1">
+    <inertial>
+        <origin xyz="2.9427412255589314e-07 0.019999999982767358 -1.7523003581487728e-07" rpy="0 0 0"/>
+        <mass value="1.083031059268471"/>
+        <inertia ixx="0.001609" iyy="0.000797" izz="0.001609" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.01832 -0.309 -0.0222" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_left_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="driven_wheel_right_3_1">
+    <inertial>
+        <origin xyz="2.0505225357958512e-08 -0.012871178913786474 -4.989555651528643e-07" rpy="0 0 0"/>
+        <mass value="1.0951220220329179"/>
+        <inertia ixx="0.001617" iyy="0.000797" izz="0.001617" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.018648 0.353 -0.022167" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/driven_wheel_right_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="spher_arm_1">
+    <inertial>
+        <origin xyz="0.09898638710237179 -0.12537510583809197 -0.0001242214865762037" rpy="0 0 0"/>
+        <mass value="2.4439796065943926"/>
+        <inertia ixx="0.001227" iyy="0.005912" izz="0.006535" ixy="6.1e-05" iyz="9e-06" ixz="4e-06"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.250959 -0.296856 -0.447648" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/spher_arm_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.250959 -0.296856 -0.447648" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/spher_arm_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="three_pivot_arm_1">
+    <inertial>
+        <origin xyz="-0.14613812568835055 -0.08331057463055003 0.19753395196056908" rpy="0 0 0"/>
+        <mass value="18.467161629111246"/>
+        <inertia ixx="0.380763" iyy="0.629929" izz="0.53974" ixy="0.081885" iyz="-0.025152" ixz="0.066418"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.246459 0.022805 -0.223067" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/three_pivot_arm_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="-0.246459 0.022805 -0.223067" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/three_pivot_arm_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+    <link name="track_left_1">
+    <inertial>
+        <origin xyz="0.01676230293799829 0.07499999999999907 -0.04520838133918911" rpy="0 0 0"/>
+        <mass value="12.720595959320448"/>
+        <inertia ixx="0.143121" iyy="0.642215" izz="0.517555" ixy="0.0" iyz="-0.0" ixz="-0.105866"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.033573 -0.259 -0.147099" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/track_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="track_right_1">
+    <inertial>
+        <origin xyz="0.09934926531523688 -0.07499999999999896 0.001477938068996404" rpy="0 0 0"/>
+        <mass value="12.720595959320448"/>
+        <inertia ixx="0.146159" iyy="0.642215" izz="0.514516" ixy="0.0" iyz="-0.0" ixz="-0.111068"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.050184 0.3 -0.097485" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://field_description/meshes/track_example_meshes/track_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+        </material>
+    </visual>
+    </link>
+
+    <link name="dummy_left_1">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.07"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_1">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.07"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_2">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_2">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_4">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_4">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.2"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_5">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.5"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_5">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.5"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_6">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_6">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_7">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_7">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_left_8">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="dummy_right_8">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="3.0"/>
+            <inertia
+            ixx="0.002"
+            iyy="0.002"
+            izz="0.001"
+            ixy="0.0"
+            ixz="0.0"
+            iyz="0.0"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <geometry>
+               <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    </joint>
+
+
+    <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.257007 -0.003 0.053667" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_link_1"/>
+    </joint>
+
+
+    <joint name="drive_wheel_joint_left" type="continuous">
+    <origin xyz="-0.198107 0.309 0.053125" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_left_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="drive_wheel_joint_right" type="continuous">
+    <origin xyz="-0.198593 -0.353 0.052167" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="drive_wheel_right_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_1" type="continuous">
+    <origin xyz="0.282607 0.309 0.190653" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_1_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_1" type="continuous">
+    <origin xyz="0.281407 -0.353 0.192167" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_1_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_2" type="continuous">
+    <origin xyz="0.151832 0.309 0.051325" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_2_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_2" type="continuous">
+    <origin xyz="0.151352 -0.353 0.052167" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_2_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_left_3" type="continuous">
+    <origin xyz="-0.01832 0.309 0.0222" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_left_3_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="driven_wheel_joint_right_3" type="continuous">
+    <origin xyz="-0.018648 -0.353 0.022167" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="driven_wheel_right_3_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="1000" velocity="2"/>
+    </joint>
+
+    <joint name="sphear_arm_joint" type="fixed">
+    <origin xyz="0.250959 0.296856 0.447648" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="spher_arm_1"/>
+    </joint>
+
+    <joint name="three_pivot_arm" type="fixed">
+    <origin xyz="0.246459 -0.022805 0.223067" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="three_pivot_arm_1"/>
+    </joint>
+
+    <joint name="track_left_joint" type="fixed">
+    <origin xyz="0.033573 0.259 0.147099" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="track_left_1"/>
+    </joint>
+
+    <joint name="track_right_joint" type="fixed">
+    <origin xyz="-0.050184 -0.3 0.097485" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="track_right_1"/>
+    </joint>
+
+    <joint name="dummy_left_joint_1" type="continuous">
+    <origin xyz="-0.228107 0.33 0.03" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_1" type="continuous">
+    <origin xyz="-0.228593 -0.373 0.03" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_2" type="continuous">
+    <origin xyz="-0.098107 0.33 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_2"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_2" type="continuous">
+    <origin xyz="-0.098593 -0.373 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_2"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_4" type="continuous">
+    <origin xyz="0.098107 0.33 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_4"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_4" type="continuous">
+    <origin xyz="0.098107 -0.373 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_4"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_5" type="continuous">
+    <origin xyz="0.198107 0.33 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_5"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_5" type="continuous">
+    <origin xyz="0.198593 -0.373 0.01" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_5"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_6" type="continuous">
+    <origin xyz="0.258593 0.33 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_6"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_6" type="continuous">
+    <origin xyz="0.258593 -0.373 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_6"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_7" type="continuous">
+    <origin xyz="0.318593 0.33 0.12" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_7"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_7" type="continuous">
+    <origin xyz="0.318593 -0.373 0.12" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_7"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_left_joint_8" type="continuous">
+    <origin xyz="0.378593 0.33 0.18" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_left_8"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <joint name="dummy_right_joint_8" type="continuous">
+    <origin xyz="0.378593 -0.373 0.18" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="dummy_right_8"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+
+    <gazebo>
+        <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+        <robotnamespace></robotnamespace>
+        <!-- Wheel Configuration -->
+        <left_joint>dummy_left_joint_1</left_joint>
+        <right_joint>dummy_right_joint_1</right_joint>
+        <left_joint>dummy_left_joint_2</left_joint>
+        <right_joint>dummy_right_joint_2</right_joint>
+        <left_joint>dummy_left_joint_4</left_joint>
+        <right_joint>dummy_right_joint_4</right_joint>
+        <left_joint>dummy_left_joint_5</left_joint>
+        <right_joint>dummy_right_joint_5</right_joint>
+        <left_joint>dummy_left_joint_6</left_joint>
+        <right_joint>dummy_right_joint_6</right_joint>
+        <left_joint>dummy_left_joint_7</left_joint>
+        <right_joint>dummy_right_joint_7</right_joint>
+        <left_joint>dummy_left_joint_8</left_joint>
+        <right_joint>dummy_right_joint_8</right_joint>
+        <wheel_separation>0.7</wheel_separation>
+        <wheel_radius>0.05</wheel_radius>
+
+        <!-- Topic Configuration -->
+        <topic>cmd_vel</topic>
+        <odom_topic>odom</odom_topic>
+        <tf_topic>/tf</tf_topic>
+        <!-- CRITICAL: Frame IDs for TF Publishing -->
+        <!-- ONLY use these two tags - remove all others -->
+        <max_wheel_torque>2</max_wheel_torque>
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+        <!-- Output -->
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_link</child_frame_id>
+        <odom_publish_frequency>50</odom_publish_frequency>
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>false</publish_wheel_tf>
+        <publish_tf>true</publish_tf>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="lidar_link_1">
+        <sensor name="lidar_sensor" type="gpu_lidar">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <always_on>true</always_on>
+        <update_rate>2</update_rate>
+        <topic>scan</topic>
+        <lidar>
+            <scan>
+            <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.5708</min_angle>
+                <max_angle>1.5708</max_angle>
+            </horizontal>
+            </scan>
+            <range>
+            <min>0.3</min>
+            <max>12.0</max>
+            </range>
+        </lidar>
+        <gz_frame_id>lidar_link_1</gz_frame_id>  <!-- CRITICAL -->
+        </sensor>
+    </gazebo>
+
+</robot>

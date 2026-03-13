@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<sdf version='1.9'>
+  <world name = "robocon_arena">
+
+    <physics name="1ms" type="ignored">
+        <max_step_size>0.001</max_step_size>
+        <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin
+        filename="gz-sim-physics-system"
+        name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+        filename="gz-sim-user-commands-system"
+        name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+        filename="gz-sim-scene-broadcaster-system"
+        name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+
+    <plugin
+        filename="libignition-gazebo-sensors-system.so"
+        name="ignition::gazebo::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light type="directional" name="sun">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 10 0 0 0</pose>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+        <attenuation>
+            <range>1000</range>
+            <constant>0.9</constant>
+            <linear>0.01</linear>
+            <quadratic>0.001</quadratic>
+        </attenuation>
+        <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+          <collision name="collision">
+          <geometry>
+              <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+              </plane>
+          </geometry>
+          </collision>
+          <visual name="visual">
+          <geometry>
+              <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+              </plane>
+          </geometry>
+          <material>
+              <ambient>1 1 1 1</ambient>
+              <diffuse>1 1 1 1</diffuse>
+          </material>
+          </visual>
+      </link>
+    </model>
+
+    <model name ="navigation_world">
+
+        <link name="outer_frame_1">
+            <pose>6 0 0.1 0 0 1.5708</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>6 0.05 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>6 0.05 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="outer_frame_2">
+            <pose>-6 0 0.1 0 0 1.5708</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>6 0.05 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>6 0.05 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="outer_frame_3">
+            <pose>0 -3 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>12 0.05 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>12 0.05 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="outer_frame_4">
+            <pose>0 3 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>12 0.05 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>12 0.05 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="spher_rack">
+            <pose>-5.05 3 0.25 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>1.2 0.3 0.5</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>1.2 0.3 0.5</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_1">
+            <pose>-2.8 1.2 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_2">
+            <pose>-2.8 -1.2 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_3">
+            <pose>2 0 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>0.001 1.2 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_4">
+            <pose>-0.4 1.8 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>4.8 0.001 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>4.8 0.001 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_5">
+            <pose>-0.4 -1.8 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>4.8 0.001 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>4.8 0.001 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+        <link name="obstacle_6">
+            <pose>3.5 0.75 0.1 0 0 0</pose>
+            <inertial>
+                <mass>5.0</mass>
+                <inertia>
+                <ixx>0.0417</ixx>
+                <iyy>0.0417</iyy>
+                <izz>0.0417</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+                </inertia>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                <box>
+                    <size>0.001 4.5 0.2</size>  <!-- length width height (meters) -->
+                </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                <box>
+                    <size>0.001 4.5 0.2</size>
+                </box>
+                </geometry>
+                <material>
+                    <ambient>0.36 0.25 0.20 1</ambient>
+                    <diffuse>0.55 0.37 0.23 1</diffuse>
+                    <specular>0.15 0.10 0.08 1</specular>
+                    <emissive>0 0 0 1</emissive>
+                </material>
+            </visual>
+        </link>
+
+    </model>
+  </world>
+</sdf>

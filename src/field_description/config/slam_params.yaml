@@ -1,0 +1,87 @@
+# slam_toolbox_params.yaml
+# Configuration for online async SLAM
+
+slam_toolbox:
+  ros__parameters:
+    
+    # == SOLVER PARAMETERS ==
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+    
+    # == SLAM TOOLBOX PARAMETERS ==
+    
+    # Odometry frame - CRITICAL
+    odom_frame: odom                    # Must match your odometry frame
+    map_frame: map                      # SLAM output frame
+    base_frame: base_footprint          # Use base_footprint (or base_link if no footprint)
+    
+    # Scan topic
+    scan_topic: /scan                   # Your LIDAR topic
+    
+    # Mode
+    mode: localization                       # Use 'mapping' for creating maps
+    
+    map_file_name: /home/vignesh/my_map_serial
+    map_start_at_dock: true
+    
+    # Debugging
+    debug_logging: false
+    throttle_scans: 1                   # Process every scan (1 = no throttle)
+    
+    # Transform parameters - CRITICAL FOR YOUR ISSUE
+    transform_publish_period: 0.02      # 50 Hz (fast updates)
+    tf_buffer_duration: 30.0            # Keep 30 seconds of TF history
+    
+    # Map update parameters
+    map_update_interval: 1.0            # Update map every 1 second
+    resolution: 0.05                    # 5cm resolution
+    
+    # == SCAN MATCHER PARAMETERS ==
+    # These affect how well scans align - TUNE THESE TO FIX DRIFT
+    
+    # Minimum travel before processing scan
+    minimum_travel_distance: 0.2        # meters (increase if too sensitive)
+    minimum_travel_heading: 0.2         # radians (~11 degrees)
+    
+    # Scan buffer
+    scan_buffer_size: 20                # Keep last 20 scans
+    scan_buffer_maximum_scan_distance: 20.0
+    
+    # Link match minimum response
+    link_match_minimum_response_fine: 0.1
+    link_scan_maximum_distance: 1.5
+    
+    # Loop closure - IMPORTANT FOR REDUCING DRIFT
+    loop_search_maximum_distance: 3.0   # Search 3m for loop closures
+    do_loop_closing: true               # Enable loop closure
+    loop_match_minimum_chain_size: 10
+    loop_match_maximum_variance_coarse: 3.0
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.45
+    
+    # == CORRELATION PARAMETERS ==
+    # Fine-tune scan matching accuracy
+    
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1
+    
+    # Coarse search
+    coarse_search_angle_offset: 0.349       # 20 degrees
+    coarse_angle_resolution: 0.0349         # 2 degrees
+    
+    # Fine search  
+    fine_search_angle_offset: 0.00349       # 0.2 degrees
+    
+    # Distance variance penalty
+    distance_variance_penalty: 0.5
+    angle_variance_penalty: 1.0
+    
+    # Range threshold
+    minimum_angle_penalty: 0.9
+    minimum_distance_penalty: 0.5
+    use_response_expansion: true

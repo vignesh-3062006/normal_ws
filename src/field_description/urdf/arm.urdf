@@ -1,0 +1,211 @@
+<?xml version="1.0" ?>
+<robot name="arm">
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0 0.0 0.025" rpy="0 0 0"/>
+    <mass value="98.12500000000001"/>
+    <inertia ixx="2.064714" iyy="2.064714" izz="4.088542" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="base_grey">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="arm_base_1">
+  <inertial>
+    <origin xyz="0.02000018673549645 -0.028223839971069423 0.12235451939358312" rpy="0 0 0"/>
+    <mass value="6.52392213647418"/>
+    <inertia ixx="0.09329" iyy="0.087232" izz="0.009771" ixy="0.0" iyz="-0.000937" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.03 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_base_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.03 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_base_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+<link name="arm_link_1_1">
+  <inertial>
+    <origin xyz="-0.16561941160126584 -0.024494983902627082 -0.23065032594607693" rpy="0 0 0"/>
+    <mass value="4.022304137846002"/>
+    <inertia ixx="0.02174" iyy="0.029916" izz="0.009185" ixy="-0.000563" iyz="0.000982" ixz="0.010774"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.03 -0.355" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_link_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.03 -0.355" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_link_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="arm_link_2_1">
+  <inertial>
+    <origin xyz="-0.07999867683278618 -0.016681114234949668 0.4638162255008624" rpy="0 0 0"/>
+    <mass value="0.5179333835962564"/>
+    <inertia ixx="0.000728" iyy="0.003946" izz="0.003255" ixy="0.0" iyz="0.0" ixz="-0.00106"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0847 -0.025 -0.5371" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_link_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.0847 -0.025 -0.5371" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/arm_link_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="kfs_base_1">
+  <inertial>
+    <origin xyz="-0.5728071916004047 -0.06567969246997718 -0.04819277600068095" rpy="0 0 0"/>
+    <mass value="1.083561146389103"/>
+    <inertia ixx="0.017066" iyy="0.000861" izz="0.016653" ixy="2.2e-05" iyz="-2.7e-05" ixz="4.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.289 -0.045 -0.463" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_base_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="base_grey">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.289 -0.045 -0.463" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_base_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="kfs_left_1">
+  <inertial>
+    <origin xyz="-0.029024265401909194 0.6878962415057329 0.06611494031857484" rpy="0 0 0"/>
+    <mass value="0.3875232114950809"/>
+    <inertia ixx="0.001167" iyy="0.001428" izz="0.00039" ixy="1e-05" iyz="-9.9e-05" ixz="8.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.245 -0.24 -0.365" rpy="0 0.102 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="base_grey">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.245 -0.24 -0.365" rpy="0 0.102 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="kfs_right_1">
+  <inertial>
+    <origin xyz="-0.0285365721647399 0.7181731900399221 0.061537033309714856" rpy="0 0 0"/>
+    <mass value="0.3763901925737342"/>
+    <inertia ixx="0.001168" iyy="0.001427" izz="0.000383" ixy="-1.1e-05" iyz="0.000102" ixz="8.6e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.245 0.137 -0.362" rpy="0 0.102 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="base_grey">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.245 0.137 -0.362" rpy="0 0.102 0"/>
+    <geometry>
+      <mesh filename="package://field_description/meshes/3pivot_arm_meshes/kfs_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="base_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="arm_base_1"/>
+</joint>
+
+<joint name="joint_1" type="revolute">
+  <origin xyz="0 0 0.305" rpy="0 0 0"/>
+  <parent link="arm_base_1"/>
+  <child link="arm_link_1_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit lower="-1.36" upper="3.14" effort="20" velocity="1.5"/>
+</joint>
+
+<joint name="joint_2" type="revolute">
+  <origin xyz="-0.1045 0.055 0.182" rpy="0 0 0"/>
+  <parent link="arm_link_1_1"/>
+  <child link="arm_link_2_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <limit lower="-1.02" upper="3.14" effort="20" velocity="1.5"/>
+</joint>
+
+<joint name="joint_3" type="revolute">
+  <origin xyz="-0.2044 0.02 -0.0742" rpy="0 0 0"/>
+  <parent link="arm_link_2_1"/>
+  <child link="kfs_base_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <limit lower="-0.255" upper="2.805" effort="20" velocity="1.5"/>
+</joint>
+
+<joint name="gripper_left_joint" type="revolute">
+  <origin xyz="0.01 0.19 -0.1275" rpy="0 -0.102 0"/>
+  <parent link="kfs_base_1"/>
+  <child link="kfs_left_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit lower="-0.785" upper="1.57" effort="20" velocity="1.5"/>
+</joint>
+
+<joint name="gripper_right_joint" type="revolute">
+  <origin xyz="0.01 -0.182 -0.1275" rpy="0 -0.102 0"/>
+  <parent link="kfs_base_1"/>
+  <child link="kfs_right_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit lower="-1.57" upper="0.785" effort="20" velocity="1.5"/>
+  <mimic joint="gripper_left_joint" multiplier="-1" offset="0"/>
+</joint>
+
+</robot>

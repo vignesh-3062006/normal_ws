@@ -1,0 +1,2193 @@
+<?xml version="1.0"?>
+<sdf version='1.9'>
+  <world name = "robocon_arena">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin
+      filename="libignition-gazebo-physics-system.so"
+      name="ignition::gazebo::systems::Physics">
+    </plugin>
+    <plugin
+        filename="gz-sim-user-commands-system"
+        name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+        filename="gz-sim-scene-broadcaster-system"
+        name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+
+    <plugin 
+        filename="libignition-gazebo-imu-system.so"
+        name="ignition::gazebo::systems::Imu">
+    </plugin>
+
+    <plugin
+        filename="libignition-gazebo-sensors-system.so"
+        name="ignition::gazebo::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light type="directional" name="sun">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 10 0 0 0</pose>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+        <attenuation>
+            <range>1000</range>
+            <constant>0.9</constant>
+            <linear>0.01</linear>
+            <quadratic>0.001</quadratic>
+        </attenuation>
+        <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+          <collision name="collision">
+          <geometry>
+              <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+              </plane>
+          </geometry>
+          </collision>
+          <visual name="visual">
+          <geometry>
+              <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+              </plane>
+          </geometry>
+          <material>
+              <ambient>1 1 1 1</ambient>
+              <diffuse>1 1 1 1</diffuse>
+          </material>
+          </visual>
+      </link>
+    </model>
+
+    <model name = 'game_field'>
+      <pose relative_to='world'>0 0 0.025 0 0 0</pose>
+      <!-- base_link -->
+      <link name='base_link'>
+        <inertial>
+          <mass>57703.387499999997</mass>
+          <inertia>
+            <ixx>704041.43519500003</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>709871.88164100004</iyy>
+            <iyz>0</iyz>
+            <izz>1413889.273758</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision'>
+          <geometry>
+            <box>
+              <size>12.150 12.100 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='base_link_visual'>
+          <geometry>
+            <box>
+              <size>12.150 12.100 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.5 0.5 0.5 1</albedo>        <!-- mid-grey -->
+                <roughness>0.7</roughness>             <!-- matte surface -->
+                <metalness>0.4</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.6 0.6 0.6 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+      </link>
+
+      <!-- martial club base frames-->
+      <link name = "martial_club_base">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'martial_club_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_base_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>1.0 0.8 0.6 1</albedo>        <!-- light peach -->
+                <roughness>0.7</roughness>             <!-- matte look -->
+                <metalness>0.2</metalness>             <!-- low metal shine -->
+              </metal>
+            </pbr>
+            <ambient>0.9 0.7 0.5 1</ambient>
+            <diffuse>1.0 0.8 0.6 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'martial_club_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_base_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='martial_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>martial_club_base</child>
+      </joint>
+
+      <!-- meihua forest base frames-->
+      <link name = "meihua_forest_base_1">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'meihua_forest_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/meihua_forest_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.93 0.64 0.59 1</albedo>   <!-- RGB 236-162-151 -->
+                <roughness>0.8</roughness>           <!-- matte plywood look -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.85 0.55 0.50 1</ambient>
+            <diffuse>0.93 0.64 0.59 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'meihua_forest_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/meihua_forest_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='meihua_forest_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>meihua_forest_base_1</child>
+      </joint>
+
+      <link name = "meihua_forest_base_2">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'meihua_forest_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/meihua_forest_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.50 0.78 0.89 1</albedo>   <!-- RGB 128-199-226 -->
+                <roughness>0.7</roughness>          <!-- matte water paint -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.45 0.70 0.80 1</ambient>
+            <diffuse>0.50 0.78 0.89 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'meihua_forest_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/meihua_forest_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='meihua_forest_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>meihua_forest_base_2</child>
+      </joint>
+
+      <!-- arena base frames-->
+      <link name = "arena_base_1">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'arena_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_base_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.99 0.73 0.64 1</albedo>   <!-- RGB 254-186-163 -->
+                <roughness>0.8</roughness>           <!-- Matte painted plywood -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.95 0.70 0.60 1</ambient>
+            <diffuse>0.99 0.73 0.64 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'arena_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_base_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='arena_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>arena_base_1</child>
+      </joint>
+
+      <link name = "arena_base_2">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'arena_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.51 0.82 0.84 1</albedo>   <!-- RGB 129-210-214 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.45 0.75 0.80 1</ambient>
+            <diffuse>0.51 0.82 0.84 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'arena_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='arena_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>arena_base_2</child>
+      </joint>
+
+      <!-- ramps -->
+      <link name = "ramp_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'ramp_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/ramp_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.75 0.74 0.71 1</albedo>   <!-- RGB 192-189-182 -->
+                <roughness>0.6</roughness>           <!-- Concrete matte finish -->
+                <metalness>0.3</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.75 0.74 0.71 1</diffuse>
+            <specular>0.4 0.4 0.4 1</specular>
+          </material>
+        </visual>
+        <collision name = 'ramp_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/ramp_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='ramp_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>ramp_1</child>
+      </joint>
+
+      <link name = "ramp_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'ramp_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/ramp_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.75 0.74 0.71 1</albedo>   <!-- RGB 192-189-182 -->
+                <roughness>0.6</roughness>           <!-- Concrete matte finish -->
+                <metalness>0.3</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.75 0.74 0.71 1</diffuse>
+            <specular>0.4 0.4 0.4 1</specular>
+          </material>
+        </visual>
+        <collision name = 'ramp_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/ramp_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='ramp_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>ramp_2</child>
+      </joint>
+
+      <!-- arena retry zones-->
+      <link name = "arena_retry_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'retry_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_retry_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.87 0.13 0.13 1</albedo>   <!-- RGB 223-34-34 -->
+                <roughness>0.7</roughness>          <!-- Matte painted plywood look -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.1 0.1 1</ambient>
+            <diffuse>0.87 0.13 0.13 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'retry_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_retry_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='arena_retry_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>arena_retry_1</child>
+      </joint>
+
+      <link name = "arena_retry_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'retry_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_retry_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.0 0.0 1.0 1</albedo>     <!-- RGB 0-0-255 -->
+                <roughness>0.6</roughness>          <!-- Slight shine, not mirror -->
+                <metalness>0.2</metalness>          <!-- Light reflectivity -->
+              </metal>
+            </pbr>
+            <ambient>0.1 0.1 0.9 1</ambient>
+            <diffuse>0.0 0.0 1.0 1</diffuse>
+            <specular>0.4 0.4 0.4 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'retry_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/arena_retry_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='arena_retry_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>arena_retry_2</child>
+      </joint>
+
+      <!-- used wepaon area frames-->
+      <link name = "used_wepaon_area_1">
+        <pose relative_to='base_link'>0 0 0.0325 0 0 0</pose>
+        <visual name = 'area_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/used_wep_area_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>1.0 1.0 0.0 1</albedo>     <!-- RGB 255-255-0 -->
+                <roughness>0.6</roughness>          <!-- Slightly reflective -->
+                <metalness>0.1</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.9 0.9 0.0 1</ambient>
+            <diffuse>1.0 1.0 0.0 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'area_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/used_wep_area_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='used_wepaon_area_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>used_wepaon_area_1</child>
+      </joint>
+
+      <link name = "used_wepaon_area_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'area_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>1.0 1.0 0.0 1</albedo>     <!-- RGB 255-255-0 -->
+                <roughness>0.6</roughness>          <!-- Slightly reflective -->
+                <metalness>0.1</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.9 0.9 0.0 1</ambient>
+            <diffuse>1.0 1.0 0.0 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'area_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='used_wepaon_area_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>used_wepaon_area_2</child>
+      </joint>
+
+      <!-- meihua forest blocks-->
+      <!-- 200 mm blocks-->
+      <link name = "200mm_block_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/200mm_bolcks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/200mm_bolcks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='200mm_block_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>200mm_block_1</child>
+      </joint>
+
+      <link name = "200mm_block_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/200mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/200mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='200mm_block_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>200mm_block_2</child>
+      </joint>
+
+      <!-- 400 mm blocks-->
+      <link name = "400mm_block_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/400mm_blocks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.44 0.22 1</albedo>   <!-- RGB 42-113-56 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.40 0.20 1</ambient>
+            <diffuse>0.16 0.44 0.22 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/400mm_blocks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='400mm_block_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>400mm_block_1</child>
+      </joint>
+
+      <link name = "400mm_block_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/400mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.44 0.22 1</albedo>   <!-- RGB 42-113-56 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.40 0.20 1</ambient>
+            <diffuse>0.16 0.44 0.22 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/400mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='400mm_block_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>400mm_block_2</child>
+      </joint>
+
+      <!-- 600 mm blocks-->
+      <link name = "600mm_block_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/600mm_blocks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.60 0.65 0.31 1</albedo>   <!-- RGB 152-166-80 -->
+                <roughness>0.8</roughness>
+                <metalness>0.3</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.55 0.60 0.28 1</ambient>
+            <diffuse>0.60 0.65 0.31 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/600mm_blocks_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='600mm_block_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>600mm_block_1</child>
+      </joint>
+
+      <link name = "600mm_block_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'block_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/600mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.60 0.65 0.31 1</albedo>   <!-- RGB 152-166-80 -->
+                <roughness>0.8</roughness>
+                <metalness>0.3</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.55 0.60 0.28 1</ambient>
+            <diffuse>0.60 0.65 0.31 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+        <collision name = 'block_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/600mm_blocks_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='600mm_block_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>600mm_block_2</child>
+      </joint>
+
+      <!-- spearhead rack-->
+      <link name = "spearhead_rack">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'rack_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/spherhead_rack_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'rack_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/spherhead_rack_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spearhead_rack_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>spearhead_rack</child>
+      </joint>
+
+      <!-- outer_frame-->
+      <link name = "outer_frame">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'frame_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/outer_frame_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'frame_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/outer_frame_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='outer_frame_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>outer_frame</child>
+      </joint>
+
+      <!-- martial club retry zones-->
+      <link name = "martial_club_retry_zone_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'zone_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.0 0.0 1.0 1</albedo>     <!-- RGB 0-0-255 -->
+                <roughness>0.6</roughness>          <!-- Slight shine, not mirror -->
+                <metalness>0.2</metalness>          <!-- Light reflectivity -->
+              </metal>
+            </pbr>
+            <ambient>0.1 0.1 0.9 1</ambient>
+            <diffuse>0.0 0.0 1.0 1</diffuse>
+            <specular>0.4 0.4 0.4 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'zone_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='martial_club_retry_zone_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>martial_club_retry_zone_2</child>
+      </joint>
+
+      <!-- r1 and r2 retry zones in martial club in frist zone-->
+      <link name = "r1_retry_zone_1">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'zone_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_r1_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.87 0.13 0.13 1</albedo>   <!-- RGB 223-34-34 -->
+                <roughness>0.7</roughness>          <!-- Matte painted plywood look -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.1 0.1 1</ambient>
+            <diffuse>0.87 0.13 0.13 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'zone_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_r1_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='r1_retry_zone_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>r1_retry_zone_1</child>
+      </joint>
+
+      <link name = "r2_retry_zone_1">
+        <pose relative_to='base_link'>0 0 0.0255 0 0 0</pose>
+        <visual name = 'zone_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_r2_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.87 0.13 0.13 1</albedo>   <!-- RGB 223-34-34 -->
+                <roughness>0.7</roughness>          <!-- Matte painted plywood look -->
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.8 0.1 0.1 1</ambient>
+            <diffuse>0.87 0.13 0.13 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'zone_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/martial_club_retry_r2_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='r2_retry_zone_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>r2_retry_zone_1</child>
+      </joint>
+
+      <!-- tic-tac-tow rack-->
+      <link name = "tic_tac_tow_rack">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'rack_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/tic_tac_tow_rack_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <!-- Textured blue glass -->
+            <ambient>0.6 0.8 1.0 0.4</ambient>
+            <diffuse>0.6 0.8 1.0 0.4</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>     <!-- softer reflections -->
+            <emissive>0 0 0 1</emissive>
+
+            <pbr>
+              <metal>
+                <!-- Same tint, more surface texture -->
+                <albedo>0.6 0.8 1.0 0.4</albedo>
+                <roughness>0.25</roughness>        <!-- KEY: textured / frosted -->
+                <metalness>0.05</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+        <collision name = 'rack_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/tic_tac_tow_rack_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='tic_tac_tow_rack_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>tic_tac_tow_rack</child>
+      </joint>
+
+      <!-- staff frames for zone 1-->
+      <link name = "staff_rack_base_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_rack_base_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_rack_base_1</child>
+      </joint>
+
+      <link name = "staff_rack_base_link_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_link_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_link_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_rack_base_link_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_rack_base_link_1</child>
+      </joint>
+
+      <link name = "staff_base_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_bsae_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_bsae_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_base_1_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_base_1</child>
+      </joint>
+
+      <link name = "staff_placed_part_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'part_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_placed_part_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'part_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_placed_part_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <joint name='staff_placed_part_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_placed_part_1</child>
+      </joint>
+
+      <!-- staff frames for zone 2-->
+      <link name = "staff_rack_base_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_rack_base_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_rack_base_2</child>
+      </joint>
+
+      <link name = "staff_rack_base_link_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_link_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_rack_base_link_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_rack_base_link_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_rack_base_link_2</child>
+      </joint>
+
+      <link name = "staff_base_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'base_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'base_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_base_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_base_2_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_base_2</child>
+      </joint>
+
+      <link name = "staff_placed_part_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'part_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_placed_part_2__1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+          <pbr>
+            <metal>
+              <albedo>0.36 0.18 0.05 1</albedo>     <!-- RGB 92-46-13 -->
+              <roughness>0.75</roughness>           <!-- Matte wood -->
+              <metalness>0.1</metalness>            <!-- Non-metallic -->
+            </metal>
+          </pbr>
+          <ambient>0.32 0.16 0.05 1</ambient>
+          <diffuse>0.36 0.18 0.05 1</diffuse>
+          <specular>0.2 0.15 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        </visual>
+        <collision name = 'part_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_placed_part_2__1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <joint name='staff_placed_part_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_placed_part_2</child>
+      </joint>
+
+      <!-- eight staff placed in the staff rack-->
+      <link name = "staff_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_1_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_1_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_1</child>
+      </joint>
+
+      <link name = "staff_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_2_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_2_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_2_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_2_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_2</child>
+      </joint>
+
+      <link name = "staff_3">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_3_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_3_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_3_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_3' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_3</child>
+      </joint>
+
+      <link name = "staff_4">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_4_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_4_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_4_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_1_4_4_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <joint name='staff_joint_4' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_4</child>
+      </joint>
+
+      <link name = "staff_5">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_5_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_5_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_5' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_5</child>
+      </joint>
+
+      <link name = "staff_6">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_6_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_2_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_6_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_2_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_6' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_6</child>
+      </joint>
+
+      <link name = "staff_7">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_7_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_3_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_7_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_3_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='staff_joint_7' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_7</child>
+      </joint>
+
+      <link name = "staff_8">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'staff_8_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_4_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>0.16 0.32 0.06 1</albedo>   <!-- RGB 41-82-16 -->
+                <roughness>0.8</roughness>
+                <metalness>0.2</metalness>
+              </metal>
+            </pbr>
+            <ambient>0.15 0.30 0.05 1</ambient>
+            <diffuse>0.16 0.32 0.06 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name = 'staff_8_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/staff_2_4_4_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <joint name='staff_joint_8' type='fixed'>
+          <parent>base_link</parent>
+          <child>staff_8</child>
+      </joint>
+
+      <!-- acrylic plate in the arena zone-->
+      <link name = "acrylic_plate">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'plate_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/acrylic_sheet_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.95 0.98 1.0 0.5</ambient>      <!-- Brighter ambient light -->
+            <diffuse>0.95 0.98 1.0 0.5</diffuse>      <!-- Semi-transparent (alpha = 0.5) -->
+            <specular>1.0 1.0 1.0 1</specular>        <!-- Strong reflection highlights -->
+            <emissive>0.05 0.05 0.05 1</emissive>    <!-- Soft glow -->
+            <pbr>
+              <metal>
+                <albedo>0.95 0.98 1.0 0.5</albedo>    <!-- Brighter base tint -->
+                <roughness>0.05</roughness>           <!-- Very smooth surface -->
+                <metalness>0.05</metalness>           <!-- Slight shine -->
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+        <collision name = 'plate_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/acrylic_sheet_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='acrylic_plate_joint' type='fixed'>
+          <parent>base_link</parent>
+          <child>acrylic_plate</child>
+      </joint>
+
+      <!-- side of use wepaon area -->
+      <link name = "used_wepaon_area_side_1">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'side_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_side_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>1.0 0.94 0.0 1</albedo>     <!-- RGB 255-240-0 (bright yellow) -->
+                <roughness>0.6</roughness>          <!-- slightly reflective -->
+                <metalness>0.1</metalness>          <!-- non-metallic -->
+              </metal>
+            </pbr>
+            <ambient>0.9 0.85 0.0 1</ambient>
+            <diffuse>1.0 0.94 0.0 1</diffuse>
+            <specular>0.4 0.4 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'side_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_side_1_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='used_wepaon_area_side_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>used_wepaon_area_side_1</child>
+      </joint>
+
+      <link name = "used_wepaon_area_side_2">
+        <pose relative_to='base_link'>0 0 0.025 0 0 0</pose>
+        <visual name = 'side_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_side_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <albedo>1.0 0.94 0.0 1</albedo>     <!-- RGB 255-240-0 (bright yellow) -->
+                <roughness>0.6</roughness>          <!-- slightly reflective -->
+                <metalness>0.1</metalness>          <!-- non-metallic -->
+              </metal>
+            </pbr>
+            <ambient>0.9 0.85 0.0 1</ambient>
+            <diffuse>1.0 0.94 0.0 1</diffuse>
+            <specular>0.4 0.4 0.3 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'side_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/use_wep_area_side_2_1_1.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='used_wepaon_area_side_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>used_wepaon_area_side_2</child>
+      </joint>
+
+      <link name = "kfs_1">
+        <pose relative_to='base_link'>1.6 -2.4 0.4 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_1</child>
+      </joint>
+
+      <link name = "kfs_3">
+        <pose relative_to='base_link'>1.6 0 0.4 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_3' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_3</child>
+      </joint>
+
+      <link name = "kfs_4">
+        <pose relative_to='base_link'>1.6 1.2 0.2 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_4' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_4</child>
+      </joint>
+
+      <link name = "kfs_5">
+        <pose relative_to='base_link'>4 -2.4 0.4 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_5' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_5</child>
+      </joint>
+
+      <link name = "kfs_6">
+        <pose relative_to='base_link'>4 -1.2 0.2 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_6' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_6</child>
+      </joint>
+
+      <link name = "kfs_8">
+        <pose relative_to='base_link'>4 1.2 0.2 0 0 0</pose>
+        <visual name = 'kfs_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Strong flat red like the icon background -->
+                <albedo>0.86 0.0 0.0 1</albedo>
+                <roughness>0.75</roughness>   <!-- flat / non-glossy -->
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.6 0.0 0.0 1</ambient>
+            <diffuse>0.86 0.0 0.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'kfs_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/r2_kfs_4.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='kfs_joint_8' type='fixed'>
+          <parent>base_link</parent>
+          <child>kfs_8</child>
+      </joint>
+
+      <link name = "spherhead_1">
+        <pose relative_to='base_link'>0 -5.55 0.525 1.5708 0 1.5708</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/hook_ess.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/hook_ess.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_1' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_1</child>
+      </joint>
+
+      <link name = "spherhead_2">
+        <pose relative_to='base_link'>0 -5.375 0.575 3.14 0 3.14</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Fist.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Fist.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_2' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_2</child>
+      </joint>
+
+      <link name = "spherhead_3">
+        <pose relative_to='base_link'>0 -5.16 0.565 -1.5708 0 0</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Hand.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_3' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_3</child>
+      </joint>
+
+      <link name = "spherhead_4">
+        <pose relative_to='base_link'>0 -4.95 0.565 -1.5708 0 3.14</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Hand.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Hand.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_4' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_4</child>
+      </joint>
+
+      <link name = "spherhead_5">
+        <pose relative_to='base_link'>0 -4.725 0.575 3.14 0 0</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Fist.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/Fist.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_5' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_5</child>
+      </joint>
+
+      <link name = "spherhead_6">
+        <pose relative_to='base_link'>0 -4.55 0.525 1.5708 0 1.5708</pose>
+        <visual name = 'spherhead_visual'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/hook_ess.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <pbr>
+              <metal>
+                <!-- Silver-grey (slightly darker than pure silver) -->
+                <albedo>0.65 0.65 0.65 1</albedo>
+                <roughness>0.45</roughness>     <!-- brushed / industrial -->
+                <metalness>0.9</metalness>
+              </metal>
+            </pbr>
+
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.65 0.65 0.65 1</diffuse>
+            <specular>0.7 0.7 0.7 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name = 'spherhead_collision'>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>package://field_description/meshes/arena/hook_ess.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name='spherhead_joint_6' type='fixed'>
+          <parent>base_link</parent>
+          <child>spherhead_6</child>
+      </joint>
+
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,10 @@
+# ROS2 build and install folders
+build/
+install/
+log/
+
+# VSCode settings
+.vscode/
+*.stl
+*.bag
+*.db3
