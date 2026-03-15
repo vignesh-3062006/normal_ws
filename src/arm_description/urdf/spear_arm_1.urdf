@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<robot name="spear_arm">
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.2 0.024999999894923422 0.01748131531387833" rpy="0 0 0"/>
+    <mass value="2.1006600137210643"/>
+    <inertia ixx="0.000787" iyy="0.046796" izz="0.046745" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="spear_head_v1_1">
+  <inertial>
+    <origin xyz="0.10537491852137579 0.046013884283250525 -0.02687562852992645" rpy="0 0 0"/>
+    <mass value="2.4439796065943926"/>
+    <inertia ixx="0.005912" iyy="0.001227" izz="0.006535" ixy="6.1e-05" iyz="4e-06" ixz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 0.12 -0.137" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/spear_head_v1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black">
+        <color rgba="0.05 0.05 0.05 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.04 0.12 -0.137" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/spear_head_v1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="servo_1">
+  <inertial>
+    <origin xyz="0.035 -2.6803572000799747e-09 0.042014921509083356" rpy="0 0 0"/>
+    <mass value="1.9860916804182907"/>
+    <inertia ixx="0.001936" iyy="0.002349" izz="0.000953" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.03 -0.025 -0.035" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="base_grey">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.03 -0.025 -0.035" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 2" type="revolute">
+  <origin xyz="-0.07 -0.145 0.102" rpy="0 0 0"/>
+  <parent link="servo_1"/>
+  <child link="spear_head_v1_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="1.570796" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Slider 3" type="prismatic">
+  <origin xyz="0.03 0.025 0.035" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="servo_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="0.27" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+</robot>

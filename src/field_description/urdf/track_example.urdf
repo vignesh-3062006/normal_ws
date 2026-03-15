@@ -259,6 +259,31 @@
     </visual>
     </link>
 
+    <link name="zed_link_1">
+        <inertial>
+        <origin xyz="3.3177436778442093e-07 2.448394642509807e-07 0.0129999999999999" rpy="0 0 0"/>
+        <mass value="1.2081073109310216"/>
+        <inertia ixx="0.002798" iyy="0.000196" izz="0.002862" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+        </inertial>
+        <visual>
+        <origin xyz="0.167758 0.000778 -0.56" rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://field_description/meshes/r_bot/zed_link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="black_mat">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+        </visual>
+        <collision>
+        <origin xyz="0.167758 0.000778 -0.55" rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://field_description/meshes/r_bot/zed_link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        </collision>
+    </link>
+
+    <link name="zed_optical_frame"/>
+
     <link name="dummy_left_1">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -739,6 +764,18 @@
     <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
+    <joint name="zed_joint" type="fixed">
+        <origin xyz="0.1 0.05 0.5" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="zed_link_1"/>
+    </joint>
+
+    <joint name="zed_optical_joint" type="fixed">
+        <parent link="zed_link_1"/>
+        <child link="zed_optical_frame"/>
+        <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+    </joint>
+
     <gazebo>
         <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
         <robotnamespace></robotnamespace>
@@ -802,6 +839,41 @@
             </range>
         </lidar>
         <gz_frame_id>lidar_link_1</gz_frame_id>  <!-- CRITICAL -->
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="zed_link_1">
+        <sensor name="rgbd_camera" type="rgbd_camera">
+        <update_rate>15</update_rate>
+
+        <camera>
+            <horizontal_fov>1.87</horizontal_fov>
+            <vertical_fov>1.19</vertical_fov>
+            <image>
+            <width>1280</width>
+            <height>720</height>
+            <format>R8G8B8</format>
+            </image>
+            <clip>
+            <near>0.2</near>
+            <far>10.0</far>
+            </clip>
+        </camera>
+
+        <depth_camera>
+            <clip>
+            <near>0.1</near>
+            <far>10.0</far>
+            </clip>
+        </depth_camera>
+
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+
+        <topic>camera</topic>
+
+        <!-- 🔥 THIS IS THE FIX -->
+        <gz_frame_id>zed_link_1</gz_frame_id>
         </sensor>
     </gazebo>
 

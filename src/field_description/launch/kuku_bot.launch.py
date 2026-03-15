@@ -94,7 +94,10 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
                    '/scan@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan',
-                   '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist'
+                   '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+                   '/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image',
+                   '/camera/depth_image@sensor_msgs/msg/Image@ignition.msgs.Image',
+                   '/camera/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo'
                    ],
         output='screen'
     )
