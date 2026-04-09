@@ -27,16 +27,20 @@ find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(rosidl_default_runtime REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(unique_identifier_msgs REQUIRED)
+find_package(action_msgs REQUIRED)
 
 install(
-  DIRECTORY launch urdf meshes config models micro_ros r2_bringup interfaces
+  DIRECTORY launch urdf meshes config models micro_ros r2_bringup interfaces maps 
   DESTINATION share/${PROJECT_NAME}
 )
 
 # generate interfaces
 rosidl_generate_interfaces(${PROJECT_NAME}
   "interfaces/srv/ArmService.srv"
-  DEPENDENCIES geometry_msgs std_msgs
+  "interfaces/srv/SetModel.srv"
+  "interfaces/action/GridTraversal.action"
+  DEPENDENCIES geometry_msgs std_msgs unique_identifier_msgs builtin_interfaces action_msgs
 )
 
 install(PROGRAMS
@@ -44,6 +48,7 @@ install(PROGRAMS
   r2_bringup/arm_server.py
   DESTINATION lib/${PROJECT_NAME}
 )
+
 # export
 ament_export_dependencies(rosidl_default_runtime)
 

@@ -1,0 +1,3 @@
+models:
+  spear: "../models/train14-spearhead.pt"
+  kfs: "../models/final_kfs_now.pt"

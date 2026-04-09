@@ -1,0 +1,7 @@
+# Use a configured model name to activate it.
+# Use "none", "off", "deactivate", or "inactive" to keep the
+# preloaded models in memory while disabling active inference.
+string model_name
+---
+bool success
+string message
