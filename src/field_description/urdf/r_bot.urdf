@@ -267,7 +267,7 @@
   </joint>
 
   <joint name="zed_joint" type="fixed">
-    <origin xyz="-0.167758 -0.000778 0.7" rpy="0 0.255 0"/>
+    <origin xyz="-0.167758 -0.000778 0.5" rpy="0 0.255 0"/>
     <parent link="base_link"/>
     <child link="zed_link_1"/>
   </joint>

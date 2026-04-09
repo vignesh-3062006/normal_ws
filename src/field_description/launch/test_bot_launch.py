@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription , ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_directory
 from launch.actions import TimerAction
@@ -21,12 +21,11 @@ def generate_launch_description():
         'r2_base.urdf'
     )
 
-    zed_params = os.path.join(
-        robot_pkg,
-        'config',
-        'common_stereo.yaml'
-    )
-
+    ekf_config_path = os.path.join(
+            get_package_share_directory('field_description'),
+            'config',
+            'rbot_ekf_node.yaml')
+    
     rviz_config_dir = os.path.join(
             get_package_share_directory('field_description'),
             'config',
@@ -46,44 +45,52 @@ def generate_launch_description():
         }]
     )
 
+    ekf_node = Node(
+                package='robot_localization',
+                executable='ekf_node',
+                name='ekf_filter_node',
+                parameters=[ekf_config_path],
+            )
+    
+    rplidar_node = Node(
+                package='rplidar_ros',
+                executable='rplidar_node',
+                name='rplidar_node',
+                parameters=[{
+                    'serial_port': '/dev/ttyUSB1',
+                    'serial_baudrate': 115200,
+                    'frame_id': 'laser',
+                    'angle_compensate': True,
+                    'use_sim_time': False,
+                    'scan_frequency': 30.0,
+                    'inverted': False,
+                }],
+                output='screen'
+            )
+
+
     # ===============================
     # ZED2i Camera (Hardware)
     # ===============================
-    zed_camera = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(
-                zed_pkg,
-                'launch',
-                'zed_camera.launch.py'
+    zed_camera = TimerAction(
+        period=1.0,   # wait 5 seconds after ZED starts before EKF starts
+        actions=[
+                IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(
+                        zed_pkg,
+                        'launch',
+                        'zed_camera.launch.py'
+                    )
+                ),
+                launch_arguments={
+                    'camera_model': 'zed2i',
+                    'pos_tracking': 'true',
+                    'publish_tf' : 'false' , 
+                    'base_frame': 'base_link'
+                }.items()
             )
-        ),
-        launch_arguments={
-            'camera_model': 'zed2i',
-            'pos_tracking': 'true',
-            'publish_tf': 'false',
-            'base_frame': 'base_link'
-        }.items()
-    )
-
-    ekf_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
-        output='screen',
-        parameters=['/home/vignesh/robocon_ws/src/field_description/config/rbot_ekf_node.yaml']
-    )
-
-    rplidar_node = Node(
-        package='rplidar_ros',
-        executable='rplidar_node',
-        name='rplidar_node',
-        parameters=[{
-            'serial_port': '/dev/ttyUSB1',
-            'serial_baudrate': 115200,
-            'frame_id': 'laser',
-            'angle_compensate': True
-        }],
-        output='screen'
+        ]
     )
 
     rviz_node = Node(
@@ -92,9 +99,10 @@ def generate_launch_description():
             name='rviz2',
             arguments=['-d', rviz_config_dir],
     )
+
+    
     
 
     return LaunchDescription([
-        robot_state_publisher,
-        zed_camera,ekf_node,rplidar_node,rviz_node
+        robot_state_publisher,ekf_node,rplidar_node,zed_camera , rviz_node
     ])
