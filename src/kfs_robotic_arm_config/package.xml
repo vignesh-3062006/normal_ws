@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>kfs_arm_moveit_config</name>
+  <name>kfs_robotic_arm_config</name>
   <version>0.3.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the arm with the MoveIt Motion Planning Framework
   </description>
-  <maintainer email="vignesh@todo.com">vignesh</maintainer>
+  <maintainer email="vignesh@todo.com">todo</maintainer>
 
   <license>BSD</license>
 
@@ -14,7 +14,7 @@
   <url type="bugtracker">https://github.com/ros-planning/moveit2/issues</url>
   <url type="repository">https://github.com/ros-planning/moveit2</url>
 
-  <author email="vignesh@todo.com">vignesh</author>
+  <author email="vignesh@todo.com">todo</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

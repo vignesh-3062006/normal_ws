@@ -3,7 +3,6 @@ ekf_filter_node:
 
     frequency: 50.0
     sensor_timeout: 0.1
-    transform_time_offset: -0.05
     publish_tf: true
     two_d_mode: true
     use_sim_time: false

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(kfs_arm_moveit_config)
+project(kfs_robotic_arm_config)
 
 find_package(ament_cmake REQUIRED)
 
